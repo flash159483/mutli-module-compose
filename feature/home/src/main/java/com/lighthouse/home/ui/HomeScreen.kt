@@ -25,12 +25,18 @@ fun HomeScreen(state: HomeState, onEvent: (HomeEvent) -> Unit) {
     val configuration = LocalConfiguration.current
 
     val screenHeight = configuration.screenHeightDp.dp
-    val lazyGridListState = rememberLazyListState()
+    val lazyListState = rememberLazyListState()
+
+    LaunchedEffect(key1 = state.questions.size) {
+        if (Constants.cardHeight.dp * state.questions.size < screenHeight) {
+            onEvent(HomeEvent.OnPagingStart)
+        }
+    }
 
     val shouldStartPaginate = remember {
         derivedStateOf {
-            (lazyGridListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
-                ?: -9) >= (lazyGridListState.layoutInfo.totalItemsCount - 6)
+            (lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+                ?: -9) >= (lazyListState.layoutInfo.totalItemsCount - 6)
         }
     }
 
@@ -42,7 +48,7 @@ fun HomeScreen(state: HomeState, onEvent: (HomeEvent) -> Unit) {
 
 
     LazyColumn(
-        state = lazyGridListState,
+        state = lazyListState,
     ) {
         items(state.questions.size, key = {
             it
@@ -51,11 +57,6 @@ fun HomeScreen(state: HomeState, onEvent: (HomeEvent) -> Unit) {
         }
     }
 
-    LaunchedEffect(key1 = state.questions.size) {
-        if (Constants.cardHeight.dp * state.questions.size < screenHeight) {
-            onEvent(HomeEvent.OnPagingStart)
-        }
-    }
 }
 
 @Composable

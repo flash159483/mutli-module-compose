@@ -7,5 +7,5 @@ data class HomeState(
     val isError: String? = null,
     val errorMessage: String = "",
     val questions: List<QuestionVO> = emptyList(),
-    val pageSize: Int = 30
+    val pageSize: Int = 5
 )
