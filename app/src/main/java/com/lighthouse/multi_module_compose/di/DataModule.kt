@@ -1,8 +1,8 @@
 package com.lighthouse.multi_module_compose.di
 
-import com.lighthouse.data.api.DrivenApiService
-import com.lighthouse.data.datasource.DrivenDataSource
-import com.lighthouse.data.datasource.DrivenDataSourceImpl
+import com.lighthouse.data.api.StackOverFlowApi
+import com.lighthouse.data.datasource.StackOverFlowDataSource
+import com.lighthouse.data.datasource.StackOverFlowDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object DataModule {
     @Provides
     @Singleton
-    fun provideDrivenDataSource(api: DrivenApiService): DrivenDataSource {
-        return DrivenDataSourceImpl(api)
+    fun provideDrivenDataSource(api: StackOverFlowApi): StackOverFlowDataSource {
+        return StackOverFlowDataSourceImpl(api)
     }
 }

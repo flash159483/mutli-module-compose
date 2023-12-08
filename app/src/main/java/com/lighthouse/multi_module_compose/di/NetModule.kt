@@ -1,7 +1,7 @@
 package com.lighthouse.multi_module_compose.di
 
 import com.google.gson.GsonBuilder
-import com.lighthouse.data.api.DrivenApiService
+import com.lighthouse.data.api.StackOverFlowApi
 import com.lighthouse.data.api.ViewTypeDeserializer
 import com.lighthouse.domain.response.ViewTypeVO
 import dagger.Module
@@ -22,7 +22,7 @@ object NetModule {
     @Singleton
     fun provideDrivenRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http://demo3624522.mockable.io/")
+            .baseUrl("https://api.stackexchange.com/2.2/")
             .client(okHttpClient)
             .addConverterFactory(
                 GsonConverterFactory.create(
@@ -48,7 +48,7 @@ object NetModule {
 
     @Provides
     @Singleton
-    fun provideDrivenApiService(retrofit: Retrofit): DrivenApiService =
-        retrofit.create(DrivenApiService::class.java)
+    fun provideDrivenApiService(retrofit: Retrofit): StackOverFlowApi =
+        retrofit.create(StackOverFlowApi::class.java)
 }
 

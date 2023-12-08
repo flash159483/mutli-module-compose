@@ -1,10 +1,11 @@
 package com.lighthouse.home.ui
 
-import com.lighthouse.domain.response.ViewTypeVO
+import com.lighthouse.domain.response.QuestionVO
 
 data class HomeState(
     val isLoading: Boolean = false,
-    val isError: Boolean = false,
+    val isError: String? = null,
     val errorMessage: String = "",
-    val drivenData: List<ViewTypeVO> = listOf()
+    val questions: List<QuestionVO> = emptyList(),
+    val pageSize: Int = 30
 )

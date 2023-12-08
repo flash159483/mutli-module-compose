@@ -9,6 +9,6 @@ import com.lighthouse.home.ui.HomeViewModel
 fun NavGraphBuilder.homeScreen() {
     composable(route = "Home") {
         val viewModel: HomeViewModel = hiltViewModel()
-        HomeScreen(viewModel.homeState)
+        HomeScreen(viewModel.homeState, viewModel::onEvent)
     }
 }
